@@ -1,32 +1,36 @@
 import React, { useState } from "react";
+import classNames from "classnames";
 import slides from "../data/slides";
 import "./Carousel.css";
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
+  // Utility function to handle thumbnail click
   const handleThumbnailClick = (index: number) => {
-    setCurrentSlide(index);  // Update the currentSlide state to highlight the clicked thumbnail
+    setCurrentSlide(index);
   };
+
+  // Get the current slide data
+  const currentSlideData = slides[currentSlide] || slides[0];
 
   return (
     <div className="carousel-container">
       {/* Slide Section */}
       <div className="carousel-slide">
+        {/* Background Image */}
         <div
           className="slide-background"
           style={{
-            backgroundImage: `linear-gradient(
-                rgba(0, 0, 0, 0.75) 75%, 
-                #000000 100%
-              ),
-              linear-gradient(
-                to right,
-                rgba(37, 45, 55, 0) 40%,
-                #000000 72.92%,
-                #09101A 100%
-              ),
-              url(${slides[currentSlide]?.background || "/assets/images/fallback.png"})`,
+            backgroundImage: `url(${currentSlideData?.background })`,
+          }}
+        ></div>
+
+        {/* Foreground Image */}
+        <div
+          className="slide-foreground"
+          style={{
+            backgroundImage: `url(${currentSlideData?.foreground })`,
           }}
         ></div>
 
@@ -56,8 +60,8 @@ const Carousel = () => {
       <div className="thumbnail-container">
         {slides.map((slide, index) => (
           <div
-            className={`thumbnail-wrapper ${index === currentSlide ? "active" : ""}`}
-            key={slide.id}
+            className={classNames("thumbnail-wrapper", { active: index === currentSlide })}
+            key={slide.id || index}
             onClick={() => handleThumbnailClick(index)}
             role="button"
             tabIndex={0}
