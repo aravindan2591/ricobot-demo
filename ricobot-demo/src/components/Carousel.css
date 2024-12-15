@@ -1,0 +1,95 @@
+.carousel-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.carousel-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  height: 500px; /* Adjust height as needed */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: white;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-text {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+button.prev-btn,
+button.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 10px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+button.prev-btn {
+  left: 10px;
+}
+
+button.next-btn {
+  right: 10px;
+}
+
+.carousel-thumbnails {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.carousel-thumbnails img {
+  width: 80px;
+  height: 50px;
+  cursor: pointer;
+  opacity: 0.7;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: opacity 0.3s, border 0.3s;
+}
+
+.carousel-thumbnails img.active,
+.carousel-thumbnails img:hover {
+  opacity: 1;
+  border: 2px solid white;
+}
+@media (max-width: 768px) {
+  .carousel-slide {
+    height: 300px; /* Adjust for smaller screens */
+  }
+
+  .carousel-thumbnails img {
+    width: 50px;
+    height: 30px;
+  }
+
+  button.prev-btn,
+  button.next-btn {
+    padding: 5px;
+  }
+}
