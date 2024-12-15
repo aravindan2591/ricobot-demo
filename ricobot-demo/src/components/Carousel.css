@@ -1,95 +1,159 @@
+/* General Carousel Container */
 .carousel-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+  position: relative;
   overflow: hidden;
-  position: relative;
 }
 
-.carousel-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.carousel-content {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
+/* Slide Section */
 .carousel-slide {
-  min-width: 100%;
-  height: 500px; /* Adjust height as needed */
+  position: relative;
+  width: 100%;
+  height: 600px; /* Adjust to match the banner height */
+  overflow: hidden;
+  transition: all 0.5s ease-in-out; /* Smooth transition */
+}
+
+.slide-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-size: cover;
   background-position: center;
+  z-index: 0;
+  filter: brightness(0.9);
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Slide Content */
+.slide-content {
+  position: relative;
+  padding: 50px 60px;
+  z-index: 2;
+}
+
+.slide-text {
+  color: #ffffff;
+  text-align: left;
+  max-width: 50%;
+}
+
+.section-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 27px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.ribbon {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.slide-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 49px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.slide-description {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.learn-more-btn {
+  font-size: 16px;
+  font-weight: 900;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.learn-more-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+/* Thumbnail Section */
+.thumbnail-container {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  color: white;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  justify-content: flex-start; /* Align thumbnails to the left */
+  gap: 25px; /* Increased gap between thumbnails */
+  position: absolute; /* Position thumbnails at the bottom */
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 90px; /* Adjust padding to ensure alignment */
+  z-index: 20; /* Ensure thumbnails appear above other content */
 }
 
-.carousel-text {
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-}
-
-button.prev-btn,
-button.next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  padding: 10px;
-  z-index: 10;
-  cursor: pointer;
-}
-
-button.prev-btn {
-  left: 10px;
-}
-
-button.next-btn {
-  right: 10px;
-}
-
-.carousel-thumbnails {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-  gap: 10px;
-}
-
-.carousel-thumbnails img {
+.thumbnail-wrapper {
   width: 80px;
-  height: 50px;
+  height: 80px;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  overflow: hidden;
   cursor: pointer;
-  opacity: 0.7;
-  border-radius: 5px;
-  border: 2px solid transparent;
-  transition: opacity 0.3s, border 0.3s;
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  flex-shrink: 0; /* Prevent shrinking of thumbnails */
+  position: relative;
 }
 
-.carousel-thumbnails img.active,
-.carousel-thumbnails img:hover {
-  opacity: 1;
-  border: 2px solid white;
+/* Active Thumbnail */
+.thumbnail-wrapper.active {
+  border-color: #ffffff; /* White border on active thumbnail */
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.5);
+  transform: scale(1.5); /* Enlarge the clicked thumbnail */
+  z-index: 20; /* Ensure enlarged thumbnail appears on top */
 }
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .carousel-slide {
-    height: 300px; /* Adjust for smaller screens */
+  .slide-text {
+    max-width: 100%;
   }
 
-  .carousel-thumbnails img {
+  .learn-more-btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .thumbnail-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thumbnail-wrapper {
     width: 50px;
-    height: 30px;
-  }
-
-  button.prev-btn,
-  button.next-btn {
-    padding: 5px;
+    height: 50px;
   }
 }
